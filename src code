@@ -1,0 +1,100 @@
+#include<stdio.h>
+
+#define CANDIDATE[]
+
+#define CANDIDATE1 "NARENDRA MODI"
+#define CANDIDATE2 "ARVIND KEJRIWAL"
+#define CANDIDATE3 "RAHUL GANDHI"
+#define CANDIDATE4 "KISHAN PANDEY"
+
+int Count1=0, Count2=0, Count3=0, Count4=0, NOvotes=0;
+
+int main()                   // combining all the function to make the programme for electronic voting machine
+{
+ int i, n;
+
+ do
+ {
+   printf("\n\n *** ELECTRONIC VOTING MACHINE ***");
+   printf("\n\n 1. Start voting");
+   printf("\n 2. Find Vote Count");
+   printf("\n 3. Find Winner");
+   printf("\n 0. Exit");
+
+       printf("\n\n Please enter your choice : ");
+
+    scanf("%d", &n);
+
+     switch(n)
+     {
+       case 1: Vote();break;
+       case 2: Count();break;
+       case 3: winner();break;
+       case 0: printf("Successfully exited");break;
+       default: printf("\n Error: Invalid Choice");
+     }
+ } while(n!=0);
+
+  getchar();
+  return 0;
+}
+
+
+  int Vote()         // Taking input from the user to add vote in the alloted slot for the candidates. 
+  {
+     int choice;                                           // showing the names   and options for the candidates standing in the election
+      printf("\n\n *** Vote for your Candidate ***\n\n");
+      printf("\n 1. %s", CANDIDATE1);
+      printf("\n 2. %s", CANDIDATE2);
+      printf("\n 3. %s", CANDIDATE3);
+      printf("\n 4. %s", CANDIDATE4);
+      printf("\n 5. %s", "NOTA");
+
+      printf("\n\n Input your choice (1 - 4) : ");
+      
+      scanf("%d",&choice);
+
+ switch(choice)                     // by using switch-case we are separating and adding the votes to the respective elected candidate
+   {
+    case 1: Count1++; break;
+    case 2: Count2++; break;
+    case 3: Count3++; break;
+    case 4: Count4++; break;
+    case 5: NOvotes++; break;                          // if someone not want to give any vote to candidates , there is an option for NOTA(None of the above)
+    default: printf("\n Invalid input! Please retry");
+             getchar();
+    }
+     printf("\n Thankyou For Voting !!");
+     return 0;
+}
+
+int Count()                                 // here the numbers of the votes to respective candidates are counted
+{
+
+   printf("\n\n **** Voting Results ****");
+   printf("\n %s - %d ", CANDIDATE1, Count1);
+   printf("\n %s - %d ", CANDIDATE2, Count2);
+   printf("\n %s - %d ", CANDIDATE3, Count3);
+   printf("\n %s - %d ", CANDIDATE4, Count4);
+   printf("\n %s - %d ", "NOTA", NOvotes); 
+ return 0;
+}
+
+int winner()                                     //this function compare the votes and give the results for the winner.
+{
+    printf("\n\n  **** WINNER FOR THE ELECTION ****\n\n");
+    if(Count1>Count2 && Count1>Count3 && Count1>Count4)
+    printf("- %s -",CANDIDATE1);
+    else if (Count2>Count3 && Count2>Count4 && Count2>Count1)
+    printf("- %s -",CANDIDATE2);
+    else if(Count3>Count4 && Count3>Count2 && Count3 >Count1)
+    printf("- %s -",CANDIDATE3);
+    else if(Count4>Count1 && Count4>Count2 && Count4 >Count3)
+    printf("- %s -",CANDIDATE4);
+    else
+    printf("ELECTION FAILED");    
+    
+    return 0;
+    
+}
+
